@@ -60,6 +60,15 @@ export class CarComponent implements OnInit {
     this.currentCar = (this.carsData.filter(car => car.searchName === carName).pop() as Car);
   }
 
+  addOpt(newOption: string): boolean {
+    this.currentCar.options.unshift(newOption);
+    return false;
+  }
+
+  removeOpt(removeOption: string): boolean {
+    this.currentCar.options = this.currentCar.options.filter(option => option !== removeOption);
+    return false;
+  }
 }
 
 interface Colors {

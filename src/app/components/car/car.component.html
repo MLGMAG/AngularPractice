@@ -1,49 +1,72 @@
 <div class="container-fluid">
-  <div class="container mt-5 ">
-    <section>
-      <h4>
-        <mark>Car:</mark>
+  <div class="container mt-5">
+
+    <div class="row  mb-5">
+      <h4 class="col-6">
         {{currentCar.name}}
         <small>{{currentCar.model}}</small>
       </h4>
 
-      <div class="alert alert-success">
-        <p>Car characteristics:</p>
-        <ul>
-          <li>Speed: <strong>{{currentCar.speed}}</strong> km</li>
-          <li>Auto color:
-            <strong>{{currentCar.colors.car}}</strong>
-          </li>
-          <li>Salon color:
-            <strong>{{currentCar.colors.salon}}</strong>
-          </li>
-          <li>Wheels color:
-            <strong>{{currentCar.colors.wheels}}</strong>
-          </li>
-        </ul>
+      <div class="offset-3 col-3 d-flex justify-content-around">
+        <button class="btn btn-danger" (click)="carSelect('bmw')">BMV</button>
+        <button class="btn btn-success" (click)="carSelect('audi')">Audi</button>
+        <button class="btn btn-info" (click)="carSelect('mer')">Mercedes</button>
       </div>
-    </section>
+    </div>
 
-    <section>
-      <h5>Car possibilities</h5>
-      <div class="alert alert-warning">
-        <ul>
-          <li *ngFor="let opt of currentCar.options; let i = index">
-            {{i + 1}} - {{opt}}
-          </li>
-        </ul>
-      </div>
-    </section>
+    <div class="row">
+      <section class="col-6">
+        <h5 class="mb-3">Car characteristics</h5>
 
-    <section>
-      <h5>Chose auto:</h5>
-      <div class="row">
-        <div class="col-md-3 d-flex justify-content-around">
-          <button class="btn btn-danger" (click)="carSelect('bmw')">BMV</button>
-          <button class="btn btn-success" (click)="carSelect('audi')">Audi</button>
-          <button class="btn btn-info" (click)="carSelect('mer')">Mercedes</button>
+        <div class="alert alert-success">
+          <ul>
+            <li>Speed: <strong>{{currentCar.speed}}</strong> km</li>
+
+            <li>Auto color:
+              <strong>{{currentCar.colors.car}}</strong>
+            </li>
+
+            <li>Salon color:
+              <strong>{{currentCar.colors.salon}}</strong>
+            </li>
+
+            <li>Wheels color:
+              <strong>{{currentCar.colors.wheels}}</strong>
+            </li>
+          </ul>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section class="col-6">
+        <h5 class="mb-3">Car possibilities</h5>
+        <div class="alert alert-warning">
+          <ul>
+            <li *ngFor="let opt of currentCar.options; let i = index">
+              {{i + 1}} - {{opt}}
+            </li>
+          </ul>
+        </div>
+
+        <div class="row mt-5">
+          <form class="col-6" (submit)="addOpt(newOption.value)">
+            <div class="form-group">
+              <label for="newOption" class="h6">Add new possibility</label>
+              <input type="text" id="newOption" placeholder="Enter something"
+                     class="form-control mt-3 mb-3" #newOption>
+              <button type="submit" class="btn btn-outline-success">Add</button>
+            </div>
+          </form>
+
+          <form class="col-6" (submit)="removeOpt(removeOption.value)">
+            <div class="form-group">
+              <label for="removeOption" class="h6">Remove possibility</label>
+              <input type="text" id="removeOption" placeholder="Enter something"
+                     class="form-control mt-3 mb-3" #removeOption>
+              <button type="submit" class="btn btn-outline-danger">Remove</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
   </div>
 </div>
