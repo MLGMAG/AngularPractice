@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="container mt-5">
 
-    <div class="row  mb-5">
+    <div class="row mb-5">
       <h4 class="col-6">
         {{currentCar.name}}
         <small>{{currentCar.model}}</small>
@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row mb-4">
       <section class="col-6">
         <h5 class="mb-3">Car characteristics</h5>
 
@@ -39,6 +39,7 @@
 
       <section class="col-6">
         <h5 class="mb-3">Car possibilities</h5>
+
         <div class="alert alert-warning">
           <ul>
             <li *ngFor="let opt of currentCar.options; let i = index">
@@ -46,11 +47,59 @@
             </li>
           </ul>
         </div>
+      </section>
+    </div>
 
-        <div class="row mt-5">
+    <div class="row">
+      <section class="col-6">
+        <form *ngIf="updateForm">
+          <h5>Update car</h5>
+
+          <div class="row">
+            <div class="mb-3 col-6">
+              <label class="form-label" for="model">Model</label>
+              <input type="text" id="model" placeholder="Enter model" class="form-control"
+                     [(ngModel)]="currentCar.model" name="model">
+            </div>
+
+            <div class="mb-3 col-6">
+              <label class="form-label" for="speed">Speed</label>
+              <input type="text" id="speed" placeholder="Enter speed" class="form-control"
+                     [(ngModel)]="currentCar.speed" name="speed">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-3 col-6">
+              <label class="form-label" for="carColor">Car color</label>
+              <input type="text" id="carColor" placeholder="Enter car color" class="form-control"
+                     [(ngModel)]="currentCar.colors.car" name="colors.car">
+            </div>
+
+            <div class="mb-3 col-6">
+              <label class="form-label" for="salonColor">Salon color</label>
+              <input type="text" id="salonColor" placeholder="Enter salon color" class="form-control"
+                     [(ngModel)]="currentCar.colors.salon" name="colors.salon">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-3 col-6">
+              <label class="form-label" for="wheelsColor">Wheels color</label>
+              <input type="text" id="wheelsColor" placeholder="Enter wheels color" class="form-control"
+                     [(ngModel)]="currentCar.colors.wheels" name="colors.wheels">
+            </div>
+          </div>
+        </form>
+
+        <button type="button" class="btn btn-outline-primary" (click)="switchUpdateForm()">Show update form</button>
+      </section>
+
+      <section class="col-6">
+        <div class="row">
           <form class="col-6" (submit)="addOpt(newOption.value)">
             <div class="form-group">
-              <label for="newOption" class="h6">Add new possibility</label>
+              <label for="newOption" class="h5">Add new possibility</label>
               <input type="text" id="newOption" placeholder="Enter something"
                      class="form-control mt-3 mb-3" #newOption>
               <button type="submit" class="btn btn-outline-success">Add</button>
@@ -59,7 +108,7 @@
 
           <form class="col-6" (submit)="removeOpt(removeOption.value)">
             <div class="form-group">
-              <label for="removeOption" class="h6">Remove possibility</label>
+              <label for="removeOption" class="h5">Remove possibility</label>
               <input type="text" id="removeOption" placeholder="Enter something"
                      class="form-control mt-3 mb-3" #removeOption>
               <button type="submit" class="btn btn-outline-danger">Remove</button>

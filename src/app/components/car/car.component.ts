@@ -48,6 +48,8 @@ export class CarComponent implements OnInit {
 
   currentCar: Car = this.carsData[0];
 
+  updateForm = false;
+
   // On component init (earlier)
   constructor() {
   }
@@ -69,6 +71,11 @@ export class CarComponent implements OnInit {
     this.currentCar.options = this.currentCar.options.filter(option => option !== removeOption);
     return false;
   }
+
+  switchUpdateForm(): void {
+    this.updateForm = !this.updateForm;
+  }
+
 }
 
 interface Colors {
