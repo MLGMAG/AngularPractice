@@ -7,27 +7,57 @@ import {Component, OnInit} from '@angular/core';
 })
 export class CarComponent implements OnInit {
 
-  name: string;
-  speed: number;
-  model: string;
-  colors: Colors;
-  options: string[];
+  carsData: Car[] = [
+    {
+      name: 'BMW',
+      searchName: 'bmw',
+      speed: 280,
+      model: 'M5',
+      colors: {
+        car: 'blue',
+        salon: 'black',
+        wheels: 'red'
+      },
+      options: ['ABS', 'Auto', 'Parking']
+    },
+    {
+      name: 'Audi',
+      searchName: 'audi',
+      speed: 235,
+      model: 'RS8',
+      colors: {
+        car: 'white',
+        salon: 'black',
+        wheels: 'silver'
+      },
+      options: ['ABS', 'Auto', 'Parking']
+    },
+    {
+      name: 'Mercedes',
+      searchName: 'mer',
+      speed: 275,
+      model: 'S',
+      colors: {
+        car: 'red',
+        salon: 'white',
+        wheels: 'golden'
+      },
+      options: ['ABS', 'Auto', 'Parking']
+    }
+  ];
+
+  currentCar: Car = this.carsData[0];
 
   // On component init (earlier)
   constructor() {
-    this.name = 'Audi';
-    this.speed = 235;
-    this.model = 'RS8';
-    this.colors = {
-      car: 'white',
-      salon: 'black',
-      wheels: 'silver'
-    };
-    this.options = ['ABS', 'Auto', 'Parking'];
   }
 
   // On component init
   ngOnInit(): void {
+  }
+
+  carSelect(carName: string): void {
+    this.currentCar = (this.carsData.filter(car => car.searchName === carName).pop() as Car);
   }
 
 }
@@ -36,4 +66,13 @@ interface Colors {
   car: string;
   salon: string;
   wheels: string;
+}
+
+interface Car {
+  name: string;
+  searchName: string;
+  speed: number;
+  model: string;
+  colors: Colors;
+  options: string[];
 }

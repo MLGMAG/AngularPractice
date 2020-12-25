@@ -1,1 +1,49 @@
-<p>{{name}}</p>
+<div class="container-fluid">
+  <div class="container mt-5 ">
+    <section>
+      <h4>
+        <mark>Car:</mark>
+        {{currentCar.name}}
+        <small>{{currentCar.model}}</small>
+      </h4>
+
+      <div class="alert alert-success">
+        <p>Car characteristics:</p>
+        <ul>
+          <li>Speed: <strong>{{currentCar.speed}}</strong> km</li>
+          <li>Auto color:
+            <strong>{{currentCar.colors.car}}</strong>
+          </li>
+          <li>Salon color:
+            <strong>{{currentCar.colors.salon}}</strong>
+          </li>
+          <li>Wheels color:
+            <strong>{{currentCar.colors.wheels}}</strong>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h5>Car possibilities</h5>
+      <div class="alert alert-warning">
+        <ul>
+          <li *ngFor="let opt of currentCar.options; let i = index">
+            {{i + 1}} - {{opt}}
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h5>Chose auto:</h5>
+      <div class="row">
+        <div class="col-md-3 d-flex justify-content-around">
+          <button class="btn btn-danger" (click)="carSelect('bmw')">BMV</button>
+          <button class="btn btn-success" (click)="carSelect('audi')">Audi</button>
+          <button class="btn btn-info" (click)="carSelect('mer')">Mercedes</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
